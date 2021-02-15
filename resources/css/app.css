@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn-red {
+        @apply px-4 py-2 h-12 font-semibold rounded-lg shadow-md text-white bg-red-500 hover:bg-red-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50;
+    }
+
+    .my-input {
+        @apply w-full h-16 px-4 rounded-lg focus:outline-none bg-white shadow-md focus:ring-2 focus:ring-red-600 dark:bg-gray-900 dark:border dark:border-gray-300 dark:border-opacity-75;
+    }
+
+    .navbar-btn-base {
+        /*noinspection CssInvalidAtRule*/
+        @apply px-2 py-1 md:py-4  text-gray-600 dark:text-gray-500 font-semibold lg:text-lg cursor-pointer;
+    }
+
+    .navbar-btn-active {
+        /*noinspection CssInvalidAtRule*/
+        @apply border-l-2 md:border-l-0 md:border-b-2 border-rose-700 text-black dark:text-white;
+    }
+
+    .navbar-btn-unactive {
+        /*noinspection CssInvalidAtRule*/
+        @apply rounded-lg hover:text-red-500;
+    }
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
