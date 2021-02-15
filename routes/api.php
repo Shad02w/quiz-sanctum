@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::apiResource('questions', QuestionController::class);
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::apiResource('questions', QuestionController::class);
 });
