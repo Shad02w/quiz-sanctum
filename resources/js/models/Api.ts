@@ -1,14 +1,27 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios from 'axios'
 
 export interface ApiResponse {
     title: string
     status: number
 }
 
+
+
+const host = 'http://localhost:8000'
+const url = `${host}/api`
+
+export const backendApiAxios = axios.create({
+    baseURL: url,
+    headers: {
+        headers: {
+            'Accept': 'application/json'
+        }
+    }
+})
+
 export interface LogoutResponse extends ApiResponse { }
 
 
-const url = 'http://localhost:8000/api'
 
 export const getCSRFToken = () => {
     const tokenTag = Array.from(document.getElementsByTagName('meta'))
@@ -19,7 +32,8 @@ export const getCSRFToken = () => {
 
 export const logout = async () => {
     try {
-        const res = await axios.post(`${url}/logout`)
+        const res = await axios.post(`${host}/logout`)
+        console.log(res)
         return res.data as ApiResponse
     } catch (error) {
         if (error.response)
@@ -28,14 +42,10 @@ export const logout = async () => {
     }
 }
 
-export const addQuestion = async (question: string) => {
+export const postQuestion = async (question: string) => {
     try {
-        const res = await axios.post(`${url}/questions`, { question }, {
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        console.log('add question res', res)
+        const res = await backendApiAxios.post('/questions', { question })
+        console.log('add question res', res.data)
         return res.data
     } catch (error) {
         console.error(error.response.data || error)

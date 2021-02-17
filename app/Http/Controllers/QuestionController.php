@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,17 +31,29 @@ class QuestionController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'question' => 'required',
-            'answer' => 'required',
+            'options' => 'array',
+            'answer' => 'required_with:options',
         ]);
+
         if ($validator->fails()) {
-            $code = HttpResponse::HTTP_BAD_REQUEST;
+            $code = HttpResponse::HTTP_UNPROCESSABLE_ENTITY;
             return Response::json([
                 'status' => $code,
                 'title' => 'Invalid request body',
-                'invalid-params' => $validator->errors()
+                'invalid-params' => $validator->getMessageBag()
             ], $code);
         }
-        return '123';
+
+        $question = Question::create($request->only('question'));
+
+        $code = HttpResponse::HTTP_OK;
+        return Response::json([
+            'status' => $code,
+            'titile' => 'Successfully create a new question set',
+            'items' => [
+                $question
+            ]
+        ], $code);
     }
 
     /**

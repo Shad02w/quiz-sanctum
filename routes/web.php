@@ -10,9 +10,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/', function () {
         return view('spa.dashboard');
-    })->middleware(['auth:sanctum'])->name('spa');
-
-    Route::post('/logout', [LogoutController::class, 'store']);
+    })->name('spa');
+});
+Route::get('/logout', [LogoutController::class, 'store'])->name('logout');
+Route::get('/aa', function () {
+    return '123';
 });
 
 

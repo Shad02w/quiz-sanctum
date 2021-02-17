@@ -15,10 +15,10 @@ const App = () => {
             document.documentElement.classList.remove('dark')
     }, [dark])
 
-    useEffect(() => {
-        axios.get('http://localhost:8000/sanctum/csrf-cookie').then(res => console.log('token res', res))
+    // useEffect(() => {
+    //     axios.get('http://localhost:8000/sanctum/csrf-cookie').then(res => console.log('token res', res))
 
-    }, [])
+    // }, [])
 
     return (
         <div id='app' className='antialiased'>

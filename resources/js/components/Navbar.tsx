@@ -12,12 +12,12 @@ const Navbar = () => {
 
     const handleLogout = useCallback(async () => {
         await logout()
-        window.location.replace('http://localhost:8000/login')
+        // window.location.replace('http://localhost:8000/login')
     }, [logout])
 
     return (
         <nav className='box-border border-gray-100 bg-white dark:bg-gray-900 border-b sticky top-0 dark:border-b-0 '>
-            <div className='w-full block container mx-auto md:flex md:flex-row md:justify-between items-center px-4 lg:px-0 py-6'>
+            <div className='w-full block  container mx-auto md:flex md:flex-row md:justify-between items-center px-4 lg:px-0 py-6'>
                 <div id='navbar-logo-tabs' className='flex flex-col md:flex-row w-full'>
                     <div className='flex flex-row justify-between'>
                         <a className='flex items-center mr-16 md:pl-2 lg:pl-2' href="/">
@@ -55,9 +55,14 @@ const Navbar = () => {
                         <ul id='navbar-admin' className='flex flex-row items-center justify-between md:justify-start text-base md:text-lg'>
                             <li className='md:mr-8 px-2 font-bold'>{username}</li>
                             <li>
-                                <button onClick={handleLogout} className='p-3 text-white bg-rose-700 hover:bg-rose-600 cursor-pointer rounded-lg'>
-                                    <HiLogout className='fill-current w-5' />
-                                </button>
+                                <form method='post' action="http://locahost:8000/logout" >
+                                    <button
+                                        type='submit'
+                                        // onClick={handleLogout} 
+                                        className='p-3 text-white bg-rose-700 hover:bg-rose-600 cursor-pointer rounded-lg'>
+                                        <HiLogout className='fill-current w-5' />
+                                    </button>
+                                </form>
                             </li>
                         </ul>
                     </div>

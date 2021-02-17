@@ -8,12 +8,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware(['guest:sanctum']);
-    // }
+    public function __construct()
+    {
+        $this->middleware('guest:sanctum');
+    }
 
-    //
     public function index()
     {
         return view('auth.login');

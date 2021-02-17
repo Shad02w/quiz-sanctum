@@ -8,13 +8,20 @@ use Illuminate\Support\Facades\Auth;
 class LogoutController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('guest:sanctum');
+    }
+
     public function store(Request $request)
     {
-        Auth::logout();
-        if (Auth::check()) {
-            abort(404);
-        } else {
-            return view('auth.login');
-        }
+        dd($request);
+        // Auth::logout();
+        // if (Auth::guard('sanctum')->check()) {
+        //     return '123';
+        // } else {
+        //     // return view('auth.login');
+        //     return '456';
+        // }
     }
 }
