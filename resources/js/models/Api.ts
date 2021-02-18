@@ -1,11 +1,41 @@
-import axios from 'axios'
+import axios, { Method } from 'axios'
+
+export type InvalidParamsResponse = {
+    [key: string]: any
+}
 
 export interface ApiResponse {
     title: string
     status: number
 }
 
+export interface QuestionPostResponse extends ApiResponse {
 
+}
+
+export interface QuestionGetResponseItem {
+    id: number
+    question: string
+    created_at: string
+    updated_at: string,
+    answer_id: number
+}
+
+export interface QuestionGetResponse extends ApiResponse {
+    items: QuestionGetResponseItem[]
+}
+
+export interface ApiResponseWithInvalidParams {
+    invalidParams: InvalidParamsResponse
+}
+
+
+export type PostResponse<T, K> = {
+    type: 'success', data: T
+} |
+{
+    type: 'failed', data: K
+}
 
 const host = 'http://localhost:8000'
 const url = `${host}/api`
@@ -21,6 +51,7 @@ export const backendApiAxios = axios.create({
 
 export interface LogoutResponse extends ApiResponse { }
 
+export const isSuccessResponse = (code: number) => (code > 200) && (code < 300)
 
 
 export const getCSRFToken = () => {
@@ -30,25 +61,22 @@ export const getCSRFToken = () => {
     return tokenTag.content
 }
 
-export const logout = async () => {
+
+
+export const ApiResquest = async function <T = any, K = any>(method: Method, resource: string, data?: any) {
     try {
-        const res = await axios.post(`${host}/logout`)
-        console.log(res)
-        return res.data as ApiResponse
+        const res = await backendApiAxios({
+            method,
+            url: resource,
+            data
+        })
+        return { type: 'success', data: res.data as T } as PostResponse<T, K>
     } catch (error) {
+        console.error(error.response || error)
         if (error.response)
-            return error.response.data as ApiResponse
+            return { type: 'failed', data: error.response.data as K } as PostResponse<T, K>
         return undefined
     }
+
 }
 
-export const postQuestion = async (question: string) => {
-    try {
-        const res = await backendApiAxios.post('/questions', { question })
-        console.log('add question res', res.data)
-        return res.data
-    } catch (error) {
-        console.error(error.response.data || error)
-        return undefined
-    }
-}

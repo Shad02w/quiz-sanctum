@@ -1,20 +1,29 @@
+import { ApiResquest, QuestionGetResponse, QuestionGetResponseItem } from '@models/Api'
 import { Option } from '@models/Data'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoMdAdd } from 'react-icons/io'
 import QuestionModal from './modals/QuestionModal'
 import QuestionCard from './QuestionCard'
 
-interface Props {
 
-}
+const Questions = () => {
+    const [showModal, setShowModal] = useState(false)
+    const [questions, setQuesions] = useState<QuestionGetResponseItem[]>([])
 
-const Questions = (props: Props) => {
-    const question = 'What is the biggest animal?'
-    const [showModal, setShowModal] = useState(true)
-    const option: Option = {
-        label: 'A',
-        text: 'Human'
+    const getQuestions = async () => {
+        try {
+            const questionRes = await ApiResquest<QuestionGetResponse>('GET', '/questions')
+            if (!questionRes || questionRes.type === 'failed') return
+            setQuesions(questionRes.data.items)
+        } catch (error) {
+            console.error(error)
+        }
     }
+
+    useEffect(() => {
+        getQuestions()
+
+    }, [])
     return (
         <div>
             <p className='text-2xl mb-3'>Questions</p>
@@ -29,8 +38,9 @@ const Questions = (props: Props) => {
                 <div className='ml-1 text-base hidden md:block'>New Question</div>
             </button>
             <div className='w-full mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8'>
-                <QuestionCard question={question} options={[option, option, option, option]} answer={'A'} />
-                <QuestionCard question={question} options={[option, option, option, option]} answer={'A'} />
+                {questions.map((item, i) => {
+                    return <QuestionCard key={i} question={item.question} options={[]} answer={'A'} />
+                })}
             </div>
             <QuestionModal
                 show={showModal}

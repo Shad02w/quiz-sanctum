@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { logout } from '@models/Api'
+import { ApiResquest } from '@models/Api'
 import { HiLogout } from 'react-icons/hi'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoCloseSharp } from 'react-icons/io5'
@@ -11,9 +11,9 @@ const Navbar = () => {
     const [expanded, setExpanded] = useState(false)
 
     const handleLogout = useCallback(async () => {
-        await logout()
-        // window.location.replace('http://localhost:8000/login')
-    }, [logout])
+        await ApiResquest('POST', '/logout');
+        window.location.replace('http://localhost:8000/login')
+    }, [])
 
     return (
         <nav className='box-border border-gray-100 bg-white dark:bg-gray-900 border-b sticky top-0 dark:border-b-0 '>
@@ -55,14 +55,11 @@ const Navbar = () => {
                         <ul id='navbar-admin' className='flex flex-row items-center justify-between md:justify-start text-base md:text-lg'>
                             <li className='md:mr-8 px-2 font-bold'>{username}</li>
                             <li>
-                                <form method='post' action="http://locahost:8000/logout" >
-                                    <button
-                                        type='submit'
-                                        // onClick={handleLogout} 
-                                        className='p-3 text-white bg-rose-700 hover:bg-rose-600 cursor-pointer rounded-lg'>
-                                        <HiLogout className='fill-current w-5' />
-                                    </button>
-                                </form>
+                                <button
+                                    onClick={handleLogout}
+                                    className='p-3 text-white bg-rose-700 hover:bg-rose-600 cursor-pointer rounded-lg'>
+                                    <HiLogout className='fill-current w-5' />
+                                </button>
                             </li>
                         </ul>
                     </div>

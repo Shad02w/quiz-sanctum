@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from 'react'
 import { ThemeContext } from '@contexts/ThemeContext'
 import Navbar from '@components/Navbar'
 import Questions from '@components/Questions'
-import axios from 'axios'
 
 const App = () => {
     // const { dark } = useContext(ThemeContext)
@@ -14,11 +13,6 @@ const App = () => {
         else
             document.documentElement.classList.remove('dark')
     }, [dark])
-
-    // useEffect(() => {
-    //     axios.get('http://localhost:8000/sanctum/csrf-cookie').then(res => console.log('token res', res))
-
-    // }, [])
 
     return (
         <div id='app' className='antialiased'>

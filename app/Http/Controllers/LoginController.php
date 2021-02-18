@@ -28,6 +28,8 @@ class LoginController extends Controller
         if (!Auth::attempt($request->only('username', 'password')))
             return Redirect::route('login')->with('status', 'Invalid username or password');
 
+        $request->session()->regenerate();
+
         return Redirect::route('spa');
     }
 

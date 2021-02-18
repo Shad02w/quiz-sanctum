@@ -12,10 +12,13 @@ const Modal = (props: PropsWithChildren<ModalProps>) => {
     return (
         show
             ?
-            <div onClick={onClose} className='fixed z-10 inset-0 overflow-y-auto'>
+            <div
+                onMouseDown={onClose}
+                className='fixed z-10 inset-0 overflow-y-auto'>
                 <div
                     className='flex items-center justify-center min-h-screen bg-opacity-70 bg-gray-800 dark:bg-black dark:bg-opacity-70'>
-                    <div className={className} onClick={e => e.stopPropagation()}>
+                    <div className={className}
+                        onMouseDown={e => e.stopPropagation()}>
                         {children}
                     </div>
                 </div>

@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
+use App\Models\Option;
 use App\Models\Question;
+use Hamcrest\Arrays\IsArray;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
+use function PHPUnit\Framework\isNull;
+
 class QuestionController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +24,17 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $questions = DB::table('questions')
+            // ->leftJoin('options', 'questions.id', '=', 'options.question_id')
+            ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
+            ->select(['questions.*', 'answers.option_id AS answer_id'])
+            ->get();
+        $code = HttpResponse::HTTP_OK;
+        return Response::json([
+            'status' => $code,
+            'titile' => 'Successfully create a new question set',
+            'items' => $questions,
+        ], $code);
     }
 
     /**
@@ -31,8 +47,10 @@ class QuestionController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'question' => 'required',
-            'options' => 'array',
-            'answer' => 'required_with:options',
+            'options' => 'array|required',
+            'answer' => 'required_with:options|numeric',
+            'options.*.label' => 'required',
+            'options.*.content' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -40,19 +58,40 @@ class QuestionController extends Controller
             return Response::json([
                 'status' => $code,
                 'title' => 'Invalid request body',
-                'invalid-params' => $validator->getMessageBag()
+                'invalidParams' => $validator->getMessageBag()
             ], $code);
         }
+        $validated = $validator->validated();
 
-        $question = Question::create($request->only('question'));
+        $collect = DB::transaction(function () use ($validated) {
+            $question = Question::create([
+                "question" => $validated['question']
+            ]);
+
+            if (is_array($validated['options']) && count($validated['options']) > 0) {
+                $options  = array_map(function ($option) use ($question) {
+                    return $option = Option::create([
+                        "label" => $option['label'],
+                        'content' => $option['content'],
+                        'question_id' => $question->id
+                    ]);
+                }, $validated['options']);
+                Answer::create([
+                    "question_id" => $question->id,
+                    "option_id" => $options[$validated['answer']]->id
+                ]);
+            }
+            return $question;
+        });
+
 
         $code = HttpResponse::HTTP_OK;
         return Response::json([
             'status' => $code,
             'titile' => 'Successfully create a new question set',
             'items' => [
-                $question
-            ]
+                $collect
+            ],
         ], $code);
     }
 
@@ -65,6 +104,8 @@ class QuestionController extends Controller
     public function show($id)
     {
         //
+        $question  = DB::table('users');
+        return $question;
     }
 
     /**

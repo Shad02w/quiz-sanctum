@@ -12,10 +12,6 @@ Route::middleware('auth:sanctum')->group(function () {
         return view('spa.dashboard');
     })->name('spa');
 });
-Route::get('/logout', [LogoutController::class, 'store'])->name('logout');
-Route::get('/aa', function () {
-    return '123';
-});
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
