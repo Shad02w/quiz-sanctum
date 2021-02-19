@@ -1,7 +1,7 @@
 import { AnswerGetResponse, Answer_Api, ApiResquest, OptionGetResponse, Option_Api } from '@models/Api'
 import { Answer, Option } from '@models/Data'
 import React, { useEffect, useState } from 'react'
-import { AiOutlineCheck } from 'react-icons/ai'
+import { AiFillDelete, AiFillEdit, AiOutlineCheck } from 'react-icons/ai'
 
 interface QuestionCardProps {
     question: string,
@@ -65,12 +65,22 @@ const QuestionCard = (props: QuestionCardProps) => {
                 (answers.length == 0) ?
                     <div className='h-full flex justify-center items-center text-gray-600 font-bold'>Loading...</div>
                     :
-                    <>
-                        <div className='text-sm text-gray-600 mb-1'>Question</div>
-                        <div className='font-bold mb-3'>{questions}</div>
-                        <div className='text-sm text-gray-600 mb-1'>Options</div>
-                        {createOptions(options)}
-                    </>
+                    <div className='flex flex-col justify-between h-full'>
+                        <div>
+                            <div className='text-sm text-gray-600 mb-1'>Question</div>
+                            <div className='font-bold mb-3'>{questions}</div>
+                            <div className='text-sm text-gray-600 mb-1'>Options</div>
+                            {createOptions(options)}
+                        </div>
+                        <div className='flex flex-row justify-end mt-2'>
+                            <button className='btn-icon text-gray-800 dark:text-gray-400 p-2'>
+                                <AiFillEdit className='fill-current w-5 h-5' />
+                            </button>
+                            <button className='btn-icon text-gray-800 dark:text-gray-400 p-2'>
+                                <AiFillDelete className='fill-current w-5 h-5' />
+                            </button>
+                        </div>
+                    </div>
             }
 
         </div>

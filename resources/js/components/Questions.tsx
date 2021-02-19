@@ -9,7 +9,7 @@ const Questions = () => {
     const [showModal, setShowModal] = useState(false)
     const [questions, setQuesions] = useState<Question_Api[]>([])
 
-    const getQuestions = async () => {
+    const updateQuestions = async () => {
         try {
             const questionRes = await ApiResquest<QuestionGetResponse>('GET', '/questions')
             if (!questionRes || questionRes.type === 'failed') return
@@ -18,10 +18,15 @@ const Questions = () => {
             console.error(error)
         }
     }
-
     useEffect(() => {
-        getQuestions()
+        updateQuestions()
     }, [])
+
+    const handleCreateSuccess = () => {
+        updateQuestions()
+        alert('Successfully Added')
+    }
+
     return (
         <div>
             <p className='text-2xl mb-3'>Questions</p>
@@ -42,6 +47,8 @@ const Questions = () => {
             </div>
             <QuestionModal
                 show={showModal}
+                title={'Create New Question'}
+                onSuccess={handleCreateSuccess}
                 onClose={() => setShowModal(false)}
             />
         </div >

@@ -26,6 +26,7 @@ class QuestionController extends Controller
         $questions = DB::table('questions')
             ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
             ->select(['questions.*', 'answers.option_id AS answer_id'])
+            ->orderByDesc('updated_at')
             ->get();
         $code = HttpResponse::HTTP_OK;
         return Response::json([
