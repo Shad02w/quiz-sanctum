@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('questions', QuestionController::class);
-    Route::apiResource('questions.options', OptionController::class)->shallow();
+    Route::apiResource('questions.options', OptionController::class)->shallow()->only(['index']);
+    Route::apiResource('questions.answers', AnswerController::class)->shallow()->only(['index']);
     Route::post('/logout', [LogoutController::class, 'store']);
 });
