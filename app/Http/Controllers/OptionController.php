@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Option;
 use App\Models\Question;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Validator;
 
 class OptionController extends Controller
 {

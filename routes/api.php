@@ -20,7 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('questions', QuestionController::class);
-    Route::apiResource('questions.options', OptionController::class)->shallow()->only(['index']);
-    Route::apiResource('questions.answers', AnswerController::class)->shallow()->only(['index']);
+    Route::apiResource('questions.options', OptionController::class)
+        ->shallow()
+        ->only(['index', 'show', 'update', 'destroy']);
+    Route::apiResource('questions.answers', AnswerController::class)
+        ->shallow()
+        ->only(['index', 'show', 'update', 'destroy']);
     Route::post('/logout', [LogoutController::class, 'store']);
 });

@@ -84,6 +84,25 @@ export const ApiResquest = async function <T = any, K = any>(method: Method, res
             return { type: 'failed', data: error.response.data as K } as PostResponse<T, K>
         return undefined
     }
+}
 
+export const getFullQuestionSetById = async (id: number) => {
+    try {
+        const questionRes = await ApiResquest<QuestionGetResponse>('GET', `/questions/${id}`)
+        if (!questionRes || questionRes.type === 'failed' || questionRes.data.items.length < 1) return undefined
+        const optionsRes = await ApiResquest<OptionGetResponse>('GET', `/questions/${id}/options`)
+        if (!optionsRes || optionsRes.type === 'failed' || optionsRes.data.items.length < 1) return undefined
+        const answerRes = await ApiResquest<AnswerGetResponse>('GET', `/questions/${id}/answers`)
+        if (!answerRes || answerRes.type === 'failed' || answerRes.data.items.length < 1) return undefined
+
+        return {
+            questions: questionRes.data.items[0],
+            options: optionsRes.data.items,
+            anwsers: answerRes.data.items
+        }
+    } catch (error) {
+        console.error(error)
+        return undefined
+    }
 }
 

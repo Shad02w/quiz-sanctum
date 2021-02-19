@@ -100,11 +100,16 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question)
     {
-        //
-        $question  = DB::table('users');
-        return $question;
+        $code = HttpResponse::HTTP_OK;
+        return Response::json([
+            'status' => $code,
+            'titile' => 'Successfully create a new question set',
+            'items' => [
+                $question
+            ],
+        ], $code);
     }
 
     /**

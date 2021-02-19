@@ -1,28 +1,27 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Modal, { ModalProps } from '@components/Modal'
 import { IoCloseSharp } from 'react-icons/io5'
-import { Option } from '@models/Data'
-import { ApiResquest, InvalidParamsResponse, ApiResponseWithInvalidParams, QuestionPostResponse } from '@models/Api'
-import { AiOutlineCheck } from 'react-icons/ai'
+import { Answer, Option, Question } from '@models/Data'
+import { ApiResquest, InvalidParamsResponse, ApiResponseWithInvalidParams, QuestionPostResponse, getFullQuestionSetById } from '@models/Api'
 
 
 
 interface QuestionModalProps extends ModalProps {
-    question?: string
-    options?: { label: string, content: string }[]
     title: string
+    questionId?: number
     onSuccess?: () => any
 }
 
 
+
 const QuestionModal = (props: QuestionModalProps) => {
-    const { show, onClose, question: initQuestion, options: initOptions, title, onSuccess } = props
-    const [question, setQuestion] = useState(initQuestion || '');
-    const [options, setOptions] = useState(initOptions || []);
+    const { show, onClose, title, onSuccess, questionId } = props
+    const [question, setQuestion] = useState<string>('');
+    const [options, setOptions] = useState<{ label: string, content: string }[]>([]);
     const [answer, setAnswer] = useState<number | undefined>(undefined)
     const [invalidParams, setInvalidParams] = useState<InvalidParamsResponse | undefined>(undefined)
 
-    const addOption = () => setOptions(pre => [...pre, { label: '', content: '' }])
+    const addOption = () => setOptions(pre => [...pre, { label: '', content: '', question_id: '' }])
 
     const removeOption = (index: number) => {
         const newOptions = options.filter((_, i) => i !== index)
@@ -43,6 +42,7 @@ const QuestionModal = (props: QuestionModalProps) => {
             newOptions[index].content = e.currentTarget.value
         setOptions(newOptions)
     }
+
     const handleAnswerOnChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const checked = e.currentTarget.checked
         if (checked)
@@ -67,6 +67,16 @@ const QuestionModal = (props: QuestionModalProps) => {
             handleClose()
         }
     }, [question, options, answer])
+
+    useEffect(() => {
+        if (!questionId) return
+        getFullQuestionSetById(questionId).then(set => {
+            if (!set) return
+            setQuestion(set.questions.question)
+            setOptions(set.options)
+            // setAnswer(set.anwsers[0].option_id)
+        })
+    }, [questionId])
 
 
     const createOptions = () => {

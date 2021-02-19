@@ -32,9 +32,8 @@ const Questions = () => {
             <p className='text-2xl mb-3'>Questions</p>
             <p className='text-base dark:text-gray-600 md:mb-5'>You can create, update and delete questions in this page</p>
             <button
-                className='p-2 shadow-md md:shadow-none flex flex-row justify-center items-center fixed bottom-14 right-6 md:static focus:outline-none
+                className='p-2 shadow-xl md:shadow-none flex flex-row justify-center items-center fixed bottom-14 right-6 md:static focus:outline-none
             text-white flex-rwo rounded-lg bg-rose-700 hover:bg-rose-600'
-                // onClick={() => addQuestion('What is that?')}
                 onClick={() => setShowModal(true)}
             >
                 <IoMdAdd className='fill-current w-7 h-7 md:w-5 md:h-5' />
