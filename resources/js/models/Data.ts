@@ -1,10 +1,14 @@
 export interface Option {
     label: string
     content: string
+    question_id: number
 }
 
 export interface Question {
     question: string,
-    options: Option[],
-    answer_id: number
+}
+
+export interface Answer {
+    question_id: number,
+    option_id: number
 }

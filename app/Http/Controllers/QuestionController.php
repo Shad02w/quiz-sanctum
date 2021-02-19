@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
-use function PHPUnit\Framework\isNull;
 
 class QuestionController extends Controller
 {
@@ -25,7 +24,6 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = DB::table('questions')
-            // ->leftJoin('options', 'questions.id', '=', 'options.question_id')
             ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
             ->select(['questions.*', 'answers.option_id AS answer_id'])
             ->get();

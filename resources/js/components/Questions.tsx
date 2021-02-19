@@ -1,5 +1,4 @@
-import { ApiResquest, QuestionGetResponse, QuestionGetResponseItem } from '@models/Api'
-import { Option } from '@models/Data'
+import { ApiResquest, QuestionGetResponse, Question_Api } from '@models/Api'
 import React, { useEffect, useState } from 'react'
 import { IoMdAdd } from 'react-icons/io'
 import QuestionModal from './modals/QuestionModal'
@@ -8,7 +7,7 @@ import QuestionCard from './QuestionCard'
 
 const Questions = () => {
     const [showModal, setShowModal] = useState(false)
-    const [questions, setQuesions] = useState<QuestionGetResponseItem[]>([])
+    const [questions, setQuesions] = useState<Question_Api[]>([])
 
     const getQuestions = async () => {
         try {
@@ -39,7 +38,7 @@ const Questions = () => {
             </button>
             <div className='w-full mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8'>
                 {questions.map((item, i) => {
-                    return <QuestionCard key={i} question={item.question} options={[]} answer={'A'} />
+                    return <QuestionCard key={i} question={item.question} questionId={item.id} />
                 })}
             </div>
             <QuestionModal
