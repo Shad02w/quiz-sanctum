@@ -1,5 +1,5 @@
 import axios, { Method } from 'axios'
-import { Option, Question } from '@models/Data'
+import { Answer, Option, Question } from '@models/Data'
 
 export type InvalidParamsResponse = {
     [key: string]: any
@@ -13,8 +13,8 @@ export interface ApiResponse {
 export interface QuestionPostResponse extends ApiResponse {
 }
 export interface Question_Api extends DatabaseItem, Question { }
-
 export interface Option_Api extends DatabaseItem, Option { }
+export interface Answer_Api extends DatabaseItem, Answer { }
 
 export interface DatabaseItem {
     id: number
@@ -25,9 +25,11 @@ export interface DatabaseItem {
 export interface QuestionGetResponse extends ApiResponse {
     items: Question_Api[]
 }
-
 export interface OptionGetResponse extends ApiResponse {
     items: Option_Api[]
+}
+export interface AnswerGetResponse extends ApiResponse {
+    items: Answer_Api[]
 }
 
 export interface ApiResponseWithInvalidParams {

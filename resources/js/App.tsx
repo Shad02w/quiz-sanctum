@@ -5,7 +5,7 @@ import Questions from '@components/Questions'
 
 const App = () => {
     // const { dark } = useContext(ThemeContext)
-    const dark = true
+    const dark = false
 
     useEffect(() => {
         if (dark)

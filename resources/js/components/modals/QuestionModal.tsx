@@ -4,9 +4,11 @@ import { IoCloseSharp } from 'react-icons/io5'
 import { Option } from '@models/Data'
 import { ApiResquest, InvalidParamsResponse, ApiResponseWithInvalidParams, QuestionPostResponse } from '@models/Api'
 
+
+
 interface QuestionModalProps extends ModalProps {
     question?: string
-    options?: Option[]
+    options?: { label: string, content: string }[]
 }
 
 

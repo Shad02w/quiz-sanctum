@@ -21,7 +21,6 @@ const Questions = () => {
 
     useEffect(() => {
         getQuestions()
-
     }, [])
     return (
         <div>
