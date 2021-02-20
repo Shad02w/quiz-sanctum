@@ -132,6 +132,16 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Delete both answer and options
+        DB::transaction(function () use ($id) {
+            Answer::where('question_id', $id)->delete();
+            Option::where('question_id', $id)->delete();
+            Question::find($id)->delete();
+        });
+        $code = HttpResponse::HTTP_OK;
+        return Response::json([
+            'status' => $code,
+            'title' => 'Successfully deteled question set with id ' . $id
+        ]);
     }
 }

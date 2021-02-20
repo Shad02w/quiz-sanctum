@@ -27,6 +27,11 @@ const Questions = () => {
         alert('Successfully Added')
     }
 
+    const handleOnDelete = () => {
+        updateQuestions()
+        alert('Successfully Deleted')
+    }
+
     return (
         <div>
             <p className='text-2xl mb-3'>Questions</p>
@@ -41,7 +46,11 @@ const Questions = () => {
             </button>
             <div className='w-full mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8'>
                 {questions.map((item, i) => {
-                    return <QuestionCard key={i} question={item.question} questionId={item.id} />
+                    return <QuestionCard key={i}
+                        onDelete={handleOnDelete}
+                        question={item.question}
+                        questionId={item.id}
+                    />
                 })}
             </div>
             <QuestionModal

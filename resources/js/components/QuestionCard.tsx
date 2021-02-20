@@ -1,4 +1,4 @@
-import { AnswerGetResponse, Answer_Api, ApiResquest, OptionGetResponse, Option_Api } from '@models/Api'
+import { AnswerGetResponse, Answer_Api, ApiResponse, ApiResquest, OptionGetResponse, Option_Api } from '@models/Api'
 import { Answer, Option } from '@models/Data'
 import React, { useEffect, useState } from 'react'
 import { AiFillDelete, AiFillEdit, AiOutlineCheck } from 'react-icons/ai'
@@ -10,13 +10,20 @@ interface QuestionCardProps {
     question: string,
     questionId: number
     onEdit?: () => any
+    onDelete?: () => any
 }
 
 const QuestionCard = (props: QuestionCardProps) => {
-    const { question: questions, questionId, onEdit } = props
+    const { question: questions, questionId, onEdit, onDelete } = props
     const [options, setOptions] = useState<Option_Api[]>([])
     const [answers, setAnswers] = useState<Answer_Api[]>([])
-    const [showModal, setShowModal] = useState(false)
+
+    const handleDelete = async () => {
+        const res = await ApiResquest<ApiResponse>('DELETE', `/questions/${questionId}`)
+        if (!res || res.type === 'failed') return
+        if (onDelete) onDelete()
+    }
+
 
 
     useEffect(() => {
@@ -84,7 +91,9 @@ const QuestionCard = (props: QuestionCardProps) => {
                                 className='btn-icon text-gray-800 dark:text-gray-400 p-3'>
                                 <FaEdit className='fill-current w-5 h-5' />
                             </button>
-                            <button className='btn-icon text-gray-800 dark:text-gray-400 p-3'>
+                            <button
+                                onClick={handleDelete}
+                                className='btn-icon text-gray-800 dark:text-gray-400 p-3'>
                                 <AiFillDelete className='fill-current w-5 h-5' />
                             </button>
                         </div>
