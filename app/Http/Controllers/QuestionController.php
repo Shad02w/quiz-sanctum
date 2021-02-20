@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Answer;
 use App\Models\Option;
 use App\Models\Question;
-use Hamcrest\Arrays\IsArray;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Support\Facades\DB;
@@ -130,13 +129,14 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
+        $id = $question->id;
         // Delete both answer and options
-        DB::transaction(function () use ($id) {
-            Answer::where('question_id', $id)->delete();
-            Option::where('question_id', $id)->delete();
-            Question::find($id)->delete();
+        DB::transaction(function () use ($question) {
+            $question->answers()->delete();
+            $question->options()->delete();
+            $question->delete();
         });
         $code = HttpResponse::HTTP_OK;
         return Response::json([

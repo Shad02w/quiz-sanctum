@@ -13,4 +13,9 @@ class Answer extends Model
         'option_id',
         'question_id'
     ];
+
+    public function question()
+    {
+        $this->belongsTo(Question::class, 'question_id');
+    }
 }
