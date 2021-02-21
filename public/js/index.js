@@ -12,8 +12,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @components/Navbar */ "./resources/js/components/Navbar.tsx");
 /* harmony import */ var _components_Questions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @components/Questions */ "./resources/js/components/Questions.tsx");
+/* harmony import */ var _components_Candidates__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @components/Candidates */ "./resources/js/components/Candidates.tsx");
+
+
 
 
 
@@ -24,15 +29,44 @@ var App = function App() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (dark) document.documentElement.classList.add('dark');else document.documentElement.classList.remove('dark');
   }, [dark]);
-  return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.HashRouter, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: 'app',
     className: 'antialiased'
   }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_1__.default, null), react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
     className: 'container mx-auto p-4 md:p-3'
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Questions__WEBPACK_IMPORTED_MODULE_2__.default, null)));
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    exact: true,
+    path: '/'
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Questions__WEBPACK_IMPORTED_MODULE_2__.default, null)), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: '/candidates'
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Candidates__WEBPACK_IMPORTED_MODULE_3__.default, null)), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: '/results'
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Results"))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./resources/js/components/Candidates.tsx":
+/*!************************************************!*\
+  !*** ./resources/js/components/Candidates.tsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var Candidates = function Candidates(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Candidates);
 
 /***/ }),
 
@@ -85,9 +119,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _models_Api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @models/Api */ "./resources/js/models/Api.ts");
-/* harmony import */ var react_icons_hi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-icons/hi */ "./node_modules/react-icons/hi/index.esm.js");
+/* harmony import */ var react_icons_hi__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-icons/hi */ "./node_modules/react-icons/hi/index.esm.js");
 /* harmony import */ var react_icons_gi__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/gi */ "./node_modules/react-icons/gi/index.esm.js");
 /* harmony import */ var react_icons_io5__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-icons/io5 */ "./node_modules/react-icons/io5/index.esm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve) {
@@ -237,6 +272,7 @@ var __generator = undefined && undefined.__generator || function (thisArg, body)
 
 
 
+
 var Navbar = function Navbar() {
   var _a = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Admin'),
       username = _a[0],
@@ -300,14 +336,21 @@ var Navbar = function Navbar() {
   }))), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "block md:w-full mt-6 md:mt-0  md:flex md:flex-row md:justify-between md:items-center " + (expanded ? '' : 'hidden')
   }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
-    className: " text-base md:text-lg md:flex md:flex-row"
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-    className: 'navbar-btn-base navbar-btn-active mb-2 md:mb-0 md:mr-8'
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null, "Questions")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-    className: 'navbar-btn-base navbar-btn-unactive mb-2 md:mb-0 md:mr-8'
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null, "Candidates")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-    className: 'navbar-btn-base navbar-btn-unactive mb-2 md:mb-0 md:mr-8'
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null, "Results"))), react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
+    className: 'text-base md:text-lg md:flex md:flex-row'
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
+    exact: true,
+    className: 'md:mr-8 navbar-btn-base navbar-btn-position',
+    activeClassName: 'navbar-btn-active',
+    to: '/'
+  }, "Questions")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
+    className: 'md:mr-8 navbar-btn-base navbar-btn-position',
+    activeClassName: 'navbar-btn-active',
+    to: '/candidates'
+  }, "Candidates")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
+    className: 'md:mr-8 navbar-btn-base navbar-btn-position',
+    activeClassName: 'navbar-btn-active',
+    to: '/results'
+  }, "Results"))), react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
     className: 'block md:hidden mt-4 mb-4 border-t-2 border-gray-500 dark:border-gray-700'
   }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     id: 'navbar-admin',
@@ -317,7 +360,7 @@ var Navbar = function Navbar() {
   }, username), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: handleLogout,
     className: 'p-3 text-white bg-rose-700 hover:bg-rose-600 cursor-pointer rounded-lg'
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_hi__WEBPACK_IMPORTED_MODULE_4__.HiLogout, {
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_hi__WEBPACK_IMPORTED_MODULE_5__.HiLogout, {
     className: 'fill-current w-5'
   }))))))));
 };
@@ -1423,13 +1466,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ "./resources/js/App.tsx");
 /* harmony import */ var _contexts_ThemeContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contexts/ThemeContext */ "./resources/js/contexts/ThemeContext.tsx");
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/react/dist/esm/extend-theme.js");
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/react/dist/esm/chakra-provider.js");
 /* harmony import */ var tailwindcss_tailwind_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tailwindcss/tailwind.css */ "./node_modules/tailwindcss/tailwind.css");
 
 
 
 
 
-(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_0__.createElement(_contexts_ThemeContext__WEBPACK_IMPORTED_MODULE_3__.ThemeContextProvider, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null)), document.getElementById('root'));
+
+var theme = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_5__.extendTheme)({});
+(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_0__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_6__.ChakraProvider, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_contexts_ThemeContext__WEBPACK_IMPORTED_MODULE_3__.ThemeContextProvider, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null))), document.getElementById('root'));
 
 /***/ }),
 

@@ -3,6 +3,7 @@ import { ApiResquest } from '@models/Api'
 import { HiLogout } from 'react-icons/hi'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoCloseSharp } from 'react-icons/io5'
+import { NavLink } from 'react-router-dom'
 
 
 const Navbar = () => {
@@ -40,15 +41,22 @@ const Navbar = () => {
                         </button>
                     </div>
                     <div className={`block md:w-full mt-6 md:mt-0  md:flex md:flex-row md:justify-between md:items-center ${expanded ? '' : 'hidden'}`}>
-                        <ul className={` text-base md:text-lg md:flex md:flex-row`}>
-                            <li className='navbar-btn-base navbar-btn-active mb-2 md:mb-0 md:mr-8'>
-                                <a>Questions</a>
+                        <ul className='text-base md:text-lg md:flex md:flex-row'>
+                            <li>
+                                <NavLink
+                                    exact
+                                    className='md:mr-8 navbar-btn-base navbar-btn-position'
+                                    activeClassName='navbar-btn-active' to='/'>Questions</NavLink>
                             </li>
-                            <li className='navbar-btn-base navbar-btn-unactive mb-2 md:mb-0 md:mr-8'>
-                                <a>Candidates</a>
+                            <li>
+                                <NavLink
+                                    className='md:mr-8 navbar-btn-base navbar-btn-position'
+                                    activeClassName='navbar-btn-active' to='/candidates'>Candidates</NavLink>
                             </li>
-                            <li className='navbar-btn-base navbar-btn-unactive mb-2 md:mb-0 md:mr-8'>
-                                <a>Results</a>
+                            <li>
+                                <NavLink
+                                    className='md:mr-8 navbar-btn-base navbar-btn-position'
+                                    activeClassName='navbar-btn-active' to='/results'>Results</NavLink>
                             </li>
                         </ul>
                         <hr className='block md:hidden mt-4 mb-4 border-t-2 border-gray-500 dark:border-gray-700' />
