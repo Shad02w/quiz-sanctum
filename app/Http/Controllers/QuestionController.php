@@ -20,9 +20,14 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $offset = $request->query('offset');
+        $limit = $request->query('limit');
+
         $questions = DB::table('questions')
+            ->offset($offset ?? 0)
+            ->limit($limit ?? 10)
             ->orderByDesc('updated_at')
             ->get();
         $code = HttpResponse::HTTP_OK;
