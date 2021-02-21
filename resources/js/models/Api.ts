@@ -44,11 +44,9 @@ export type PostResponse<T, K> = {
     type: 'failed', data: K
 }
 
-const host = 'http://localhost:8000'
-const url = `${host}/api`
 
 export const backendApiAxios = axios.create({
-    baseURL: url,
+    baseURL: '/api',
     headers: {
         headers: {
             'Accept': 'application/json'
