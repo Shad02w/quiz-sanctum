@@ -27,6 +27,7 @@
         "stylelint-config-standard": "^20.0.0",
         "tailwindcss": "^2.0.3",
         "ts-loader": "^8.0.17",
-        "typescript": "^4.1.5"
+        "typescript": "^4.1.5",
+        "validate.js": "^0.13.1"
     }
 }
