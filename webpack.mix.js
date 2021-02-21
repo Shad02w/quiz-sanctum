@@ -1,15 +1,16 @@
 const mix = require('laravel-mix');
 const path = require('path')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 mix.ts('resources/js/index.tsx', 'public/js')
     .copyDirectory('resources/images', 'public/images')
     .postCss('resources/css/app.css', 'public/css', [
         require('tailwindcss')
     ])
-    .webpackConfig({
 
-    })
-
+const plugins = mix.inProduction() ? [
+    new BundleAnalyzerPlugin()
+] : []
 
 mix.webpackConfig({
     resolve: {
@@ -33,7 +34,10 @@ mix.webpackConfig({
                 exclude: /node_modules/
             }
         ]
-    }
+    },
+    plugins
 })
+    .extract()
+
 
 mix.disableSuccessNotifications()

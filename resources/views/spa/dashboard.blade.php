@@ -20,6 +20,8 @@
 
 <body class="min-h-full dark:bg-gray-900 dark:text-white">
     <div id="root"></div>
+    <script src="{{ asset('js/manifest.js') }}"></script>
+    <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/index.js') }}"></script>
 </body>
 
