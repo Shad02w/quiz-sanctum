@@ -23,8 +23,6 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = DB::table('questions')
-            ->leftJoin('answers', 'questions.id', '=', 'answers.question_id')
-            ->select(['questions.*', 'answers.option_id AS answer_id'])
             ->orderByDesc('updated_at')
             ->get();
         $code = HttpResponse::HTTP_OK;
@@ -45,10 +43,11 @@ class QuestionController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'question' => 'required',
-            'options' => 'array|required',
-            'answer' => 'required_with:options|numeric',
+            'options' => 'array|required|min:2',
             'options.*.label' => 'required',
-            'options.*.content' => 'required'
+            'options.*.content' => 'required',
+            'answers' => 'required|array|min:1',
+            'answers.*' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -74,12 +73,20 @@ class QuestionController extends Controller
                         'question_id' => $question->id
                     ]);
                 }, $validated['options']);
-                Answer::create([
-                    "question_id" => $question->id,
-                    "option_id" => $options[$validated['answer']]->id
-                ]);
+
+                $answers = array_map(function ($optionIndex) use ($question, $options) {
+                    Answer::create([
+                        "question_id" => $question->id,
+                        "option_id" => $options[$optionIndex]->id
+                    ]);
+                }, $validated['answers']);
             }
-            return $question;
+
+            return [
+                'question' => $question,
+                'options' => $options,
+                'answers' => $answers
+            ];
         });
 
 
