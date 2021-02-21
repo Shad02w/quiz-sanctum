@@ -4,6 +4,10 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UserController;
+use App\Models\Question;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +31,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->shallow()
         ->only(['index', 'show', 'update', 'destroy']);
     Route::post('/logout', [LogoutController::class, 'store']);
+
+    Route::prefix('users')->group(function () {
+        Route::get('/me', [UserController::class, 'Me']);
+    });
 });

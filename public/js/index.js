@@ -274,7 +274,7 @@ var __generator = undefined && undefined.__generator || function (thisArg, body)
 
 
 var Navbar = function Navbar() {
-  var _a = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Admin'),
+  var _a = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       username = _a[0],
       setUsername = _a[1];
 
@@ -300,6 +300,13 @@ var Navbar = function Navbar() {
             ];
         }
       });
+    });
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    (0,_models_Api__WEBPACK_IMPORTED_MODULE_1__.ApiResquest)('GET', '/users/me').then(function (res) {
+      if (res && res.type === 'success') {
+        setUsername(res.data.user.name);
+      }
     });
   }, []);
   return react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {

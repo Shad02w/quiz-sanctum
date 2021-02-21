@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react'
-import { ApiResquest } from '@models/Api'
+import React, { useCallback, useState, useEffect } from 'react'
+import { ApiResquest, UserMeGetResponse } from '@models/Api'
 import { HiLogout } from 'react-icons/hi'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoCloseSharp } from 'react-icons/io5'
@@ -8,12 +8,21 @@ import { NavLink } from 'react-router-dom'
 
 const Navbar = () => {
 
-    const [username, setUsername] = useState('Admin')
+    const [username, setUsername] = useState('')
     const [expanded, setExpanded] = useState(false)
 
     const handleLogout = useCallback(async () => {
         await ApiResquest('POST', '/logout');
         window.location.replace('http://localhost:8000/login')
+    }, [])
+
+    useEffect(() => {
+        ApiResquest<UserMeGetResponse>('GET', '/users/me')
+            .then(res => {
+                if (res && res.type === 'success') {
+                    setUsername(res.data.user.name)
+                }
+            })
     }, [])
 
     return (

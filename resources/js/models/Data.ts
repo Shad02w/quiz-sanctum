@@ -12,3 +12,10 @@ export interface Answer {
     question_id: number,
     option_id: number
 }
+
+export interface User {
+    name: string
+    email: string
+    username: string
+}
+
