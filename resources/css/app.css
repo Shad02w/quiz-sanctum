@@ -32,10 +32,6 @@
         /*noinspection CssInvalidAtRule*/
         @apply border-l-2 md:border-l-0 md:border-b-2 border-rose-700 text-black dark:text-white;
     }
-
-    .navbar-btn-position {
-        @apply mb-4 md:mb-0 md:mr-8;
-    }
 }
 
 * {

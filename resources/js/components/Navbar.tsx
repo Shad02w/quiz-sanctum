@@ -42,20 +42,20 @@ const Navbar = () => {
                     </div>
                     <div className={`block md:w-full mt-6 md:mt-0  md:flex md:flex-row md:justify-between md:items-center ${expanded ? '' : 'hidden'}`}>
                         <ul className='text-base md:text-lg md:flex md:flex-row'>
-                            <li>
+                            <li className='mb-4 md:mb-0 md:mr-4'>
                                 <NavLink
                                     exact
-                                    className='md:mr-8 navbar-btn-base navbar-btn-position'
+                                    className='navbar-btn-base'
                                     activeClassName='navbar-btn-active' to='/'>Questions</NavLink>
                             </li>
-                            <li>
+                            <li className='mb-4 md:mb-0 md:mr-4'>
                                 <NavLink
-                                    className='md:mr-8 navbar-btn-base navbar-btn-position'
+                                    className='navbar-btn-base'
                                     activeClassName='navbar-btn-active' to='/candidates'>Candidates</NavLink>
                             </li>
-                            <li>
+                            <li className='mb-4 md:mb-0 md:mr-4'>
                                 <NavLink
-                                    className='md:mr-8 navbar-btn-base navbar-btn-position'
+                                    className='navbar-btn-base'
                                     activeClassName='navbar-btn-active' to='/results'>Results</NavLink>
                             </li>
                         </ul>

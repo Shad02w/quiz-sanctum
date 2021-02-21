@@ -337,17 +337,23 @@ var Navbar = function Navbar() {
     className: "block md:w-full mt-6 md:mt-0  md:flex md:flex-row md:justify-between md:items-center " + (expanded ? '' : 'hidden')
   }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
     className: 'text-base md:text-lg md:flex md:flex-row'
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: 'mb-4 md:mb-0 md:mr-4'
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
     exact: true,
-    className: 'md:mr-8 navbar-btn-base navbar-btn-position',
+    className: 'navbar-btn-base',
     activeClassName: 'navbar-btn-active',
     to: '/'
-  }, "Questions")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-    className: 'md:mr-8 navbar-btn-base navbar-btn-position',
+  }, "Questions")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: 'mb-4 md:mb-0 md:mr-4'
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
+    className: 'navbar-btn-base',
     activeClassName: 'navbar-btn-active',
     to: '/candidates'
-  }, "Candidates")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
-    className: 'md:mr-8 navbar-btn-base navbar-btn-position',
+  }, "Candidates")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: 'mb-4 md:mb-0 md:mr-4'
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
+    className: 'navbar-btn-base',
     activeClassName: 'navbar-btn-active',
     to: '/results'
   }, "Results"))), react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
