@@ -1,4 +1,4 @@
-import { AnswerGetResponse, ApiResponse, ApiResponseBase, ApiResquest, OptionGetResponse } from '@models/Api'
+import { AnswerGetResponse, ApiResponseBase, ApiResquest, DataBaseRecord, DatabaseRecordBase, OptionGetResponse } from '@models/Api'
 import { Answer, Option } from '@models/Data'
 import React, { useEffect, useState } from 'react'
 import { AiFillDelete, AiFillEdit, AiOutlineCheck } from 'react-icons/ai'
@@ -13,8 +13,8 @@ interface QuestionCardProps {
 
 const QuestionCard = (props: QuestionCardProps) => {
     const { question: questions, questionId, onEdit, onDelete } = props
-    const [options, setOptions] = useState<ApiResponse<Option>[]>([])
-    const [answers, setAnswers] = useState<ApiResponse<Answer>[]>([])
+    const [options, setOptions] = useState<DataBaseRecord<Option>[]>([])
+    const [answers, setAnswers] = useState<DataBaseRecord<Answer>[]>([])
 
     const handleDelete = async () => {
         const res = await ApiResquest<ApiResponseBase>('DELETE', `/questions/${questionId}`)
@@ -39,7 +39,7 @@ const QuestionCard = (props: QuestionCardProps) => {
             })
     }, [questionId])
 
-    const createOptions = (options: ApiResponse<Option>[]) => {
+    const createOptions = (options: (Option & DatabaseRecordBase)[]) => {
         return (
             options.length > 0
                 ?

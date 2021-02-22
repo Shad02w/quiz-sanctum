@@ -5,15 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
-use League\CommonMark\Inline\Element\Code;
 
 class CandidateController extends Controller
 {
     //
     public function index(Request $request)
     {
+        $offset = $request->query('offset') ?? 0;
+        $limit = $request->query('limit') ?? PHP_INT_MAX;
+        $candidates = DB::table('candidates')
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
+        return Response::json([
+            'status' => 200,
+            'titile' => 'Get candidates',
+            'items' => $candidates
+        ]);
     }
 
     public function store(Request $request)
@@ -41,8 +52,24 @@ class CandidateController extends Controller
         ], $code);
     }
 
-    public function show(Request $request, Candidate $candidate)
+    public function show(Request $request, $id)
     {
+        $candidate =  Candidate::find($id);
+        if (!isset($candidate)) {
+            $code = HttpResponse::HTTP_NOT_FOUND;
+            return Response::json([
+                'status' => $code,
+                'title' => 'Cannot find the candidate',
+            ], $code);
+        }
+        $code = HttpResponse::HTTP_OK;
+        return Response::json([
+            'status' => $code,
+            'title' => 'Successfully created new candidates',
+            'items' => [
+                $candidate
+            ]
+        ], $code);
     }
 
     public function destroy(Candidate $candidate)

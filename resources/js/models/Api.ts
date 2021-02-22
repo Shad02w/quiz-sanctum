@@ -1,5 +1,5 @@
 import axios, { Method } from 'axios'
-import { Answer, Option, Question, User } from '@models/Data'
+import { Answer, Candidate, Option, Question, User } from '@models/Data'
 
 export interface DatabaseRecordBase {
     id: number
@@ -7,7 +7,10 @@ export interface DatabaseRecordBase {
     created_at: string,
 }
 
+export type DataBaseRecord<T> = DatabaseRecordBase & T
+
 export interface ApiResponseBase {
+    details?: string
     title: string
     status: number
 }
@@ -17,22 +20,23 @@ export type InvalidParamsResponse = {
 }
 
 export interface ApiResponseWithItems<T> extends ApiResponseBase {
-    items: T[]
+    items: DataBaseRecord<T>[]
 }
 
 export interface ApiResponseWithInvalidParams {
     invalidParams: InvalidParamsResponse
 }
 
-export type ApiResponse<T> = DatabaseRecordBase & T
+// export type ApiResponse<T> = DatabaseRecordBase & T
 
 
-export type QuestionGetResponse = ApiResponseWithItems<ApiResponse<Question>>
+export type QuestionGetResponse = ApiResponseWithItems<Question>
 export interface QuestionPostResponse extends ApiResponseBase { }
 
-export type OptionGetResponse = ApiResponseWithItems<ApiResponse<Option>>
-export type AnswerGetResponse = ApiResponseWithItems<ApiResponse<Answer>>
-export type UserMeGetResponse = ApiResponseWithItems<ApiResponse<User>>
+export type OptionGetResponse = ApiResponseWithItems<Option>
+export type AnswerGetResponse = ApiResponseWithItems<Answer>
+export type UserMeGetResponse = ApiResponseWithItems<User>
+export type CandidateGetResponse = ApiResponseWithItems<Candidate>
 
 
 export type PostResponse<T, K> = {

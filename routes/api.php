@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
@@ -28,14 +29,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('questions.options', OptionController::class)
         ->shallow()
         ->only(['index', 'show', 'update', 'destroy']);
+
     Route::apiResource('questions.answers', AnswerController::class)
         ->shallow()
         ->only(['index', 'show', 'update', 'destroy']);
+
     Route::post('/logout', [LogoutController::class, 'store']);
 
     Route::prefix('users')->group(function () {
         Route::get('/me', [UserController::class, 'Me']);
     });
+
+    Route::apiResource('candidates', CandidateController::class);
 
     Route::post('/mail', [QuizController::class, 'finished']);
 });

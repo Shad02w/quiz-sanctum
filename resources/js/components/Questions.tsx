@@ -1,4 +1,4 @@
-import { ApiResponse, ApiResquest, QuestionGetResponse } from '@models/Api'
+import { ApiResquest, DataBaseRecord, DatabaseRecordBase, QuestionGetResponse } from '@models/Api'
 import { Question } from '@models/Data'
 import React, { useEffect, useState } from 'react'
 import { IoMdAdd } from 'react-icons/io'
@@ -8,7 +8,7 @@ import QuestionCard from './QuestionCard'
 
 const Questions = () => {
     const [showModal, setShowModal] = useState(false)
-    const [questions, setQuesions] = useState<ApiResponse<Question>[]>([])
+    const [questions, setQuesions] = useState<DataBaseRecord<Question>[]>([])
 
     const updateQuestions = async () => {
         try {
