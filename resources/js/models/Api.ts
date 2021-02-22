@@ -4,7 +4,7 @@ import { Answer, Option, Question, User } from '@models/Data'
 export interface DatabaseRecordBase {
     id: number
     updated_at: string,
-    createed_at: string,
+    created_at: string,
 }
 
 export interface ApiResponseBase {
