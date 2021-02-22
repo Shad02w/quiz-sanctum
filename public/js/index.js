@@ -276,7 +276,7 @@ var Candidates = function Candidates(props) {
   return react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     className: 'pb-5 max-w-full overflow-x-hidden'
   }, react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-    className: 'text-2xl mb-6'
+    className: 'md:hidden text-2xl mb-6'
   }, "Candidates"), react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     className: 'p-3 overflow-x-auto'
   }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Table, {

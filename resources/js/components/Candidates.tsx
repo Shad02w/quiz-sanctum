@@ -41,7 +41,7 @@ const Candidates = (props: CandidateProps) => {
 
     return (
         <div className='pb-5 max-w-full overflow-x-hidden'>
-            <div className='text-2xl mb-6'>Candidates</div>
+            <div className='md:hidden text-2xl mb-6'>Candidates</div>
             <div className='p-3 overflow-x-auto' >
                 <Table variant='unstyled' className='rounded-md'>
                     <Thead>
