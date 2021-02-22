@@ -1,4 +1,5 @@
-import { ApiResquest, QuestionGetResponse, Question_Api } from '@models/Api'
+import { ApiResponse, ApiResquest, QuestionGetResponse } from '@models/Api'
+import { Question } from '@models/Data'
 import React, { useEffect, useState } from 'react'
 import { IoMdAdd } from 'react-icons/io'
 import QuestionModal from './modals/QuestionModal'
@@ -7,7 +8,7 @@ import QuestionCard from './QuestionCard'
 
 const Questions = () => {
     const [showModal, setShowModal] = useState(false)
-    const [questions, setQuesions] = useState<Question_Api[]>([])
+    const [questions, setQuesions] = useState<ApiResponse<Question>[]>([])
 
     const updateQuestions = async () => {
         try {

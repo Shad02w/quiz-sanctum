@@ -1,44 +1,38 @@
 import axios, { Method } from 'axios'
 import { Answer, Option, Question, User } from '@models/Data'
 
-export type InvalidParamsResponse = {
-    [key: string]: any
-}
-
-export interface ApiResponse {
-    title: string
-    status: number
-}
-
-export interface QuestionPostResponse extends ApiResponse {
-}
-export interface Question_Api extends DatabaseItem, Question { }
-export interface Option_Api extends DatabaseItem, Option { }
-export interface Answer_Api extends DatabaseItem, Answer { }
-
-export interface DatabaseItem {
+export interface DatabaseRecordBase {
     id: number
     updated_at: string,
     createed_at: string,
 }
 
-export interface QuestionGetResponse extends ApiResponse {
-    items: Question_Api[]
-}
-export interface OptionGetResponse extends ApiResponse {
-    items: Option_Api[]
-}
-export interface AnswerGetResponse extends ApiResponse {
-    items: Answer_Api[]
+export interface ApiResponseBase {
+    title: string
+    status: number
 }
 
-export interface UserMeGetResponse extends ApiResponse {
-    user: User
+export type InvalidParamsResponse = {
+    [key: string]: any
+}
+
+export interface ApiResponseWithItems<T> extends ApiResponseBase {
+    items: T[]
 }
 
 export interface ApiResponseWithInvalidParams {
     invalidParams: InvalidParamsResponse
 }
+
+export type ApiResponse<T> = DatabaseRecordBase & T
+
+
+export type QuestionGetResponse = ApiResponseWithItems<ApiResponse<Question>>
+export interface QuestionPostResponse extends ApiResponseBase { }
+
+export type OptionGetResponse = ApiResponseWithItems<ApiResponse<Option>>
+export type AnswerGetResponse = ApiResponseWithItems<ApiResponse<Answer>>
+export type UserMeGetResponse = ApiResponseWithItems<ApiResponse<User>>
 
 
 export type PostResponse<T, K> = {
@@ -58,7 +52,7 @@ export const backendApiAxios = axios.create({
     }
 })
 
-export interface LogoutResponse extends ApiResponse { }
+export interface LogoutResponse extends ApiResponseBase { }
 
 export const isSuccessResponse = (code: number) => (code > 200) && (code < 300)
 

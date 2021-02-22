@@ -1,10 +1,8 @@
-import { AnswerGetResponse, Answer_Api, ApiResponse, ApiResquest, OptionGetResponse, Option_Api } from '@models/Api'
+import { AnswerGetResponse, ApiResponse, ApiResponseBase, ApiResquest, OptionGetResponse } from '@models/Api'
 import { Answer, Option } from '@models/Data'
 import React, { useEffect, useState } from 'react'
 import { AiFillDelete, AiFillEdit, AiOutlineCheck } from 'react-icons/ai'
 import { FaEdit } from 'react-icons/fa'
-import Modal from './Modal'
-import QuestionModal from './modals/QuestionModal'
 
 interface QuestionCardProps {
     question: string,
@@ -15,11 +13,11 @@ interface QuestionCardProps {
 
 const QuestionCard = (props: QuestionCardProps) => {
     const { question: questions, questionId, onEdit, onDelete } = props
-    const [options, setOptions] = useState<Option_Api[]>([])
-    const [answers, setAnswers] = useState<Answer_Api[]>([])
+    const [options, setOptions] = useState<ApiResponse<Option>[]>([])
+    const [answers, setAnswers] = useState<ApiResponse<Answer>[]>([])
 
     const handleDelete = async () => {
-        const res = await ApiResquest<ApiResponse>('DELETE', `/questions/${questionId}`)
+        const res = await ApiResquest<ApiResponseBase>('DELETE', `/questions/${questionId}`)
         if (!res || res.type === 'failed') return
         if (onDelete) onDelete()
     }
@@ -41,7 +39,7 @@ const QuestionCard = (props: QuestionCardProps) => {
             })
     }, [questionId])
 
-    const createOptions = (options: Option_Api[]) => {
+    const createOptions = (options: ApiResponse<Option>[]) => {
         return (
             options.length > 0
                 ?

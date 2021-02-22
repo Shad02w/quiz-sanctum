@@ -20,7 +20,7 @@ const Navbar = () => {
         ApiResquest<UserMeGetResponse>('GET', '/users/me')
             .then(res => {
                 if (res && res.type === 'success') {
-                    setUsername(res.data.user.name)
+                    setUsername(res.data.items[0].name)
                 }
             })
     }, [])

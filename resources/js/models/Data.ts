@@ -19,3 +19,7 @@ export interface User {
     username: string
 }
 
+export interface Candidate {
+    email: string
+    state: string
+}
