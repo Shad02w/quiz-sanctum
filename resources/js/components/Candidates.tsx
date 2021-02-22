@@ -7,6 +7,8 @@ interface Props {
 const Candidates = (props: Props) => {
     return (
         <div>
+            This is candidates page
+
         </div>
     )
 }

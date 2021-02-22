@@ -63,7 +63,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Candidates = function Candidates(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null);
+  return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "This is candidates page");
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Candidates);
