@@ -4,6 +4,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom'
 import Navbar from '@components/Navbar'
 import Questions from '@components/Questions'
 import Candidates from '@components/Candidates'
+import Result from '@components/Result'
 
 const App = () => {
     // const { dark } = useContext(ThemeContext)
@@ -29,7 +30,7 @@ const App = () => {
                             <Candidates />
                         </Route>
                         <Route path='/results'>
-                            <div>Results</div>
+                            <Result />
                         </Route>
                     </Switch>
                 </section>

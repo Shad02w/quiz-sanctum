@@ -4,6 +4,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -35,4 +36,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('users')->group(function () {
         Route::get('/me', [UserController::class, 'Me']);
     });
+
+    Route::post('/mail', [QuizController::class, 'finished']);
 });

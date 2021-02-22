@@ -44,6 +44,7 @@ class CandidateController extends Controller
     public function show(Request $request, Candidate $candidate)
     {
     }
+
     public function destroy(Candidate $candidate)
     {
     }
