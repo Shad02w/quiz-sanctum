@@ -3,9 +3,11 @@
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\TokenController;
 use App\Http\Controllers\UserController;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -43,4 +45,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('candidates', CandidateController::class);
 
     Route::post('/mail', [QuizController::class, 'finished']);
+
+    Route::delete('/sanctum/token', [TokenController::class, 'destory']);
 });
+
+Route::post('/sanctum/token', [TokenController::class, 'store'])->middleware('guest:sanctum');
