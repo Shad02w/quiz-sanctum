@@ -32,6 +32,16 @@ mix.webpackConfig({
                 test: /\.css&/,
                 use: ['css-loader', 'postcss-loader'],
                 exclude: /node_modules/
+            },
+            {
+                test: /\.(png|jpg|gif|svg)&/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192,
+                    }
+                }],
+                exclude: /node_modules/
             }
         ]
     },

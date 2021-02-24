@@ -4,6 +4,8 @@ import { HiLogout } from 'react-icons/hi'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoCloseSharp } from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
+import whiteLogo from '../../images/digiatdigi-white.svg'
+import logo from '../../images/digiatdigi-logo.svg'
 
 
 const Navbar = () => {
@@ -31,8 +33,8 @@ const Navbar = () => {
                 <div id='navbar-logo-tabs' className='flex flex-col md:flex-row w-full'>
                     <div className='flex flex-row justify-between'>
                         <a className='flex items-center mr-16 md:pl-2 lg:pl-2' href="/">
-                            <img className='w-auto h-6 md:h-10 hidden dark:block' src="../images/digiatdigi-white.svg" alt="logo of company for dark mode" />
-                            <img className='w-auto h-6 md:h-10 block dark:hidden' src="../images/digiatdigi-logo.svg" alt="logo of company" />
+                            <img className='w-auto h-6 md:h-10 hidden dark:block' src={whiteLogo} alt="logo of company for dark mode" />
+                            <img className='w-auto h-6 md:h-10 block dark:hidden' src={logo} alt="logo of company" />
                         </a>
                         <button
                             className='text-gray-600 hover:text-gray-800 focus:text-gray-800 ring-gray-600 focus:ring-gray-800
