@@ -4,9 +4,6 @@ import { HiLogout } from 'react-icons/hi'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoCloseSharp } from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
-import whiteLogo from '../../images/digiatdigi-white.svg'
-import logo from '../../images/digiatdigi-logo.svg'
-
 
 const Navbar = () => {
 
@@ -15,10 +12,11 @@ const Navbar = () => {
 
     const handleLogout = useCallback(async () => {
         await ApiResquest('POST', '/logout');
-        window.location.replace('http://localhost:8000/login')
+        window.location.href = `${window.location.pathname}`
     }, [])
 
     useEffect(() => {
+        console.log(window.location)
         ApiResquest<UserMeGetResponse>('GET', '/users/me')
             .then(res => {
                 if (res && res.type === 'success') {
@@ -32,10 +30,10 @@ const Navbar = () => {
             <div className='w-full block  container mx-auto md:flex md:flex-row md:justify-between items-center px-4 lg:px-0 py-6'>
                 <div id='navbar-logo-tabs' className='flex flex-col md:flex-row w-full'>
                     <div className='flex flex-row justify-between'>
-                        <a className='flex items-center mr-16 md:pl-2 lg:pl-2' href="/">
-                            <img className='w-auto h-6 md:h-10 hidden dark:block' src={whiteLogo} alt="logo of company for dark mode" />
-                            <img className='w-auto h-6 md:h-10 block dark:hidden' src={logo} alt="logo of company" />
-                        </a>
+                        <div className='flex items-center mr-16 md:pl-2 lg:pl-2'>
+                            <img className='w-auto h-6 md:h-10 hidden dark:block' src='.//images/digiatdigi-white.svg' alt="logo of company for dark mode" />
+                            <img className='w-auto h-6 md:h-10 block dark:hidden' src='.//images/digiatdigi-logo.svg' alt="logo of company" />
+                        </div>
                         <button
                             className='text-gray-600 hover:text-gray-800 focus:text-gray-800 ring-gray-600 focus:ring-gray-800
                         dark:text-gray-600 dark:hover:text-white dark:focus:text-white  dark:ring-gray-600 dark:focus:ring-white

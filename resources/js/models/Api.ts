@@ -1,6 +1,8 @@
 import axios, { Method } from 'axios'
 import { Answer, Candidate, Option, Question, User } from '@models/Data'
 
+const APP_BASE = '/quiz'
+
 export interface DatabaseRecordBase {
     id: number
     updated_at: string,
@@ -48,7 +50,7 @@ export type PostResponse<T, K> = {
 
 
 export const backendApiAxios = axios.create({
-    baseURL: '/api',
+    baseURL: `${APP_BASE}/api`,
     headers: {
         headers: {
             'Accept': 'application/json'
