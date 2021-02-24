@@ -47,6 +47,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/mail', [QuizController::class, 'finished']);
 
     Route::delete('/sanctum/token', [TokenController::class, 'destory']);
+    Route::post('/sanctum/isLogin', [TokenController::class, 'isLogin']);
 });
 
 Route::post('/sanctum/token', [TokenController::class, 'store'])->middleware('guest:sanctum');

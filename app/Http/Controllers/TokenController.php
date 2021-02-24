@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Validator;
 
 class TokenController extends Controller
 {
+    public function isLogin()
+    {
+        return FacadesResponse::json([
+            'status' => Response::HTTP_OK,
+            'title' => 'login'
+        ]);
+    }
 
     public function store(Request $request)
     {
