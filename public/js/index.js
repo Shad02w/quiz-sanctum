@@ -268,8 +268,8 @@ var Candidates = function Candidates(props) {
       }, "Interrupt");
     } else if (state.toLowerCase() === 'process') {
       return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Badge, {
-        colorScheme: 'purple'
-      }, "Interrupt");
+        colorScheme: 'cyan'
+      }, "Process");
     } else return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Badge, null, state);
   };
 

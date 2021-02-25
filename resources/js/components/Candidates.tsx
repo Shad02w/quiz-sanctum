@@ -32,7 +32,7 @@ const Candidates = (props: CandidateProps) => {
             return <Badge colorScheme='red'>Interrupt</Badge>
         }
         else if (state.toLowerCase() === 'process') {
-            return <Badge colorScheme='purple'>Interrupt</Badge>
+            return <Badge colorScheme='cyan'>Process</Badge>
         }
         else
             return <Badge>{state}</Badge>
