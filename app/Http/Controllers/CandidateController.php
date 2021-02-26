@@ -30,7 +30,7 @@ class CandidateController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required',
+            'email' => 'required|unique:candidates,email',
             'state' => 'required'
         ]);
         if ($validator->fails()) {
