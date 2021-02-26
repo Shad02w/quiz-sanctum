@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnswerPaper;
 use App\Models\Candidate;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -13,14 +14,22 @@ use function PHPUnit\Framework\isEmpty;
 
 class AnswerPaperController extends Controller
 {
-    private function badRequest(string $message)
+    private function badRequest(string $title, array $invalidPramas)
     {
         return Response::json([
             'status' => HttpResponse::HTTP_BAD_REQUEST,
-            'title' => $message
+            'title' => $title,
+            'invalidPramas' => $invalidPramas
         ], HttpResponse::HTTP_BAD_REQUEST);
     }
 
+    private function notFound(string $title)
+    {
+        return Response::json([
+            'status' => HttpResponse::HTTP_NOT_FOUND,
+            'title' => $title
+        ], HttpResponse::HTTP_NOT_FOUND);
+    }
     /**
      * Get a question without duplicate
      *
@@ -29,9 +38,7 @@ class AnswerPaperController extends Controller
     public function index(Request $request, Candidate $candidate)
     {
         // Get all question that this caidiate has done
-        if (!$candidate) {
-            return $this->badRequest('Candidate id is valid');
-        }
+        if (!$candidate) return $this->notFound('Candidate can not be found');
         $answereds =  $candidate->answerpaper->toArray();
         $questions = Question::all()->toArray();
         $questionsPool =  array_filter(
@@ -58,9 +65,29 @@ class AnswerPaperController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Candidate $candidate)
     {
-        //
+        if (!$candidate) return $this->notFound('Candidate can not be found');
+        $validator = Validator::make($request->all(), [
+            'question_id' => 'required|numeric',
+            'option_id' => 'required|numeric'
+        ]);
+        if ($validator->fails()) return $this->badRequest(
+            'Invalid request body',
+            $validator->getMessageBag()->toArray()
+        );
+        $answer = AnswerPaper::create([
+            'question_id' => $request->input('question_id'),
+            'option_id' => $request->input('option_id'),
+            'candidate_id' => $candidate->id,
+        ]);
+        return Response::json([
+            'status' => HttpResponse::HTTP_OK,
+            'title' => 'Submit question answer',
+            'items' => [
+                $answer
+            ]
+        ]);
     }
 
     /**
