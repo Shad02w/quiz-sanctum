@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\AnswerPaperController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\LoginController;
@@ -27,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
+
     Route::apiResource('questions', QuestionController::class);
     Route::apiResource('questions.options', OptionController::class)
         ->shallow()
@@ -36,18 +38,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->shallow()
         ->only(['index', 'show', 'update', 'destroy']);
 
-    Route::post('/logout', [LogoutController::class, 'store']);
+    Route::apiResource('candidates', CandidateController::class);
+    Route::apiResource('candidates.answerpaper', AnswerPaperController::class)->shallow()
+        ->only(['index', 'store', 'destroy']);
 
+
+    Route::post('/mail', [QuizController::class, 'finished']);
+    Route::delete('/sanctum/token', [TokenController::class, 'destory']);
+    Route::post('/sanctum/isLogin', [TokenController::class, 'isLogin']);
+    Route::post('/logout', [LogoutController::class, 'store']);
     Route::prefix('users')->group(function () {
         Route::get('/me', [UserController::class, 'Me']);
     });
-
-    Route::apiResource('candidates', CandidateController::class);
-
-    Route::post('/mail', [QuizController::class, 'finished']);
-
-    Route::delete('/sanctum/token', [TokenController::class, 'destory']);
-    Route::post('/sanctum/isLogin', [TokenController::class, 'isLogin']);
 });
 
 Route::post('/sanctum/token', [TokenController::class, 'store'])->middleware('guest:sanctum');
