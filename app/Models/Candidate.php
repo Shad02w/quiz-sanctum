@@ -14,7 +14,7 @@ class Candidate extends Model
         'state'
     ];
 
-    public function answerpaper()
+    public function answerpapers()
     {
         return $this->hasMany(AnswerPaper::class);
     }
