@@ -4,16 +4,11 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AnswerPaperController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\UserController;
-use App\Models\AnswerPaper;
-use App\Models\Question;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,12 +34,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->shallow()
         ->only(['index', 'show', 'update', 'destroy']);
 
+    Route::post('/candidates/{candidate}/finish', [CandidateController::class, 'finish']);
     Route::apiResource('candidates', CandidateController::class);
 
     Route::get('/candidates/{candidate}/answerpapers/generate', [AnswerPaperController::class, 'generate']);
     Route::apiResource('candidates.answerpapers', AnswerPaperController::class)->shallow()
-        ->only(['index', 'store', 'destroy']);
-
+        ->only(['index', 'store', 'show', 'destroy']);
 
     Route::post('/mail', [QuizController::class, 'finished']);
     Route::delete('/sanctum/token', [TokenController::class, 'destory']);

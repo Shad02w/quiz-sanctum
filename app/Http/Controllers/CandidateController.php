@@ -45,7 +45,7 @@ class CandidateController extends Controller
         $code = HttpResponse::HTTP_OK;
         return Response::json([
             'status' => $code,
-            'title' => 'Successfully created new candidates',
+            'title' => 'Successfully created new candidate',
             'items' => [
                 $candidate
             ]
@@ -65,7 +65,7 @@ class CandidateController extends Controller
         $code = HttpResponse::HTTP_OK;
         return Response::json([
             'status' => $code,
-            'title' => 'Successfully created new candidates',
+            'title' => 'Get candidate with id ' . $candidate->id,
             'items' => [
                 $candidate
             ]
@@ -74,5 +74,28 @@ class CandidateController extends Controller
 
     public function destroy(Candidate $candidate)
     {
+        $result = $candidate->delete();
+        if ($result) {
+            return Response::json([
+                'status' => HttpResponse::HTTP_OK,
+                'title' => 'Successfully delete candidate',
+            ]);
+        } else {
+            return Response::json([
+                'status' => HttpResponse::HTTP_NOT_MODIFIED,
+                'title' => 'Successfully delete candidate',
+            ]);
+        }
+    }
+
+    public function finish($id)
+    {
+        $candidate = Candidate::find($id);
+        if (!$candidate) return Response::json([
+            'status' => HttpResponse::HTTP_NOT_FOUND,
+            'title' => 'Candidate not found'
+        ], HttpResponse::HTTP_NOT_FOUND);
+
+        return $candidate;
     }
 }
