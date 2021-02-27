@@ -10,6 +10,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\UserController;
+use App\Models\AnswerPaper;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +40,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->only(['index', 'show', 'update', 'destroy']);
 
     Route::apiResource('candidates', CandidateController::class);
-    Route::apiResource('candidates.answerpaper', AnswerPaperController::class)->shallow()
+
+    Route::get('/candidates/{candidate}/answerpapers/generate', [AnswerPaperController::class, 'generate']);
+    Route::apiResource('candidates.answerpapers', AnswerPaperController::class)->shallow()
         ->only(['index', 'store', 'destroy']);
 
 

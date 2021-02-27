@@ -7,10 +7,10 @@ use App\Models\Candidate;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
-use function PHPUnit\Framework\isEmpty;
 
 class AnswerPaperController extends Controller
 {
@@ -37,26 +37,6 @@ class AnswerPaperController extends Controller
      */
     public function index(Request $request, Candidate $candidate)
     {
-        // Get all question that this caidiate has done
-        if (!$candidate) return $this->notFound('Candidate can not be found');
-        $answereds =  $candidate->answerpaper->toArray();
-        $questions = Question::all()->toArray();
-        $questionsPool =  array_filter(
-            $questions,
-            fn ($question) =>
-            !in_array($question['id'], array_map(fn ($answered) => $answered['id'], $answereds))
-        );
-        $questions;
-        if (isEmpty($questionsPool))
-            $questions[0];
-        $question = $questionsPool[array_rand($questionsPool)];
-        return Response::json([
-            'status' => HttpResponse::HTTP_OK,
-            'title' => 'Get a random question',
-            'items' => [
-                $question
-            ]
-        ]);
     }
 
     /**
@@ -122,5 +102,29 @@ class AnswerPaperController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function generate(Candidate $candidate)
+    {
+        $candidate_id = $candidate->id;
+        // Genarate question pool which they have not answer before
+        $sql = <<<SQL
+        SELECT * FROM `questions`
+        WHERE `id` NOT IN (
+            SELECT DISTINCT `question_id` FROM `answer_papers`
+            WHERE `candidate_id` = $candidate_id
+        )
+        SQL;
+        $questionPool =  DB::select($sql);
+
+        $question = (empty($questionPool)) ? Question::first() : $questionPool[array_rand($questionPool)];
+
+        return Response::json([
+            'status' => HttpResponse::HTTP_OK,
+            'title' => 'Get a random question',
+            'items' => [
+                $question
+            ]
+        ]);
     }
 }
