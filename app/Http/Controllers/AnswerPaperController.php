@@ -37,6 +37,11 @@ class AnswerPaperController extends Controller
      */
     public function index(Request $request, Candidate $candidate)
     {
+        return Response::json([
+            'status' => HttpResponse::HTTP_OK,
+            'title' => 'Get all the answer papers belong to candidate with id ' . $candidate->id,
+            'items' => $candidate->answerpaper
+        ], HttpResponse::HTTP_NOT_FOUND);
     }
 
     /**
@@ -76,9 +81,15 @@ class AnswerPaperController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(AnswerPaper $paper)
     {
-        //
+        return Response::json([
+            'status' => HttpResponse::HTTP_OK,
+            'title' => 'Submit question answer',
+            'items' => [
+                $paper
+            ]
+        ]);
     }
 
     /**
