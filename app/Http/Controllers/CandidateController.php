@@ -96,6 +96,15 @@ class CandidateController extends Controller
             'title' => 'Candidate not found'
         ], HttpResponse::HTTP_NOT_FOUND);
 
-        return $candidate;
+        $candidate->state = 'finished';
+        $candidate->save();
+
+        return Response::json([
+            "status" => HttpResponse::HTTP_OK,
+            "title" => 'Finish quiz',
+            "items" => [
+                $candidate
+            ]
+        ]);
     }
 }
