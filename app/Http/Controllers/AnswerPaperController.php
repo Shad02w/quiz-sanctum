@@ -35,8 +35,10 @@ class AnswerPaperController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Candidate $candidate)
+    public function index(Request $request, $id)
     {
+        $candidate = Candidate::find($id);
+        if (!$candidate) return $this->notFound('Candidate not found');
         return Response::json([
             'status' => HttpResponse::HTTP_OK,
             'title' => 'Get all the answer papers belong to candidate with id ' . $candidate->id,
@@ -50,8 +52,9 @@ class AnswerPaperController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Candidate $candidate)
+    public function store(Request $request, $id)
     {
+        $candidate = Candidate::find($id);
         if (!$candidate) return $this->notFound('Candidate can not be found');
         $validator = Validator::make($request->all(), [
             'question_id' => 'required|numeric',
@@ -81,8 +84,10 @@ class AnswerPaperController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(AnswerPaper $paper)
+    public function show($id)
     {
+        $paper = AnswerPaper::find($id);
+        if (!$paper) return $this->notFound('Answer paper not found');
         return Response::json([
             'status' => HttpResponse::HTTP_OK,
             'title' => 'Submit question answer',
@@ -115,9 +120,10 @@ class AnswerPaperController extends Controller
         //
     }
 
-    public function generate(Candidate $candidate)
+    public function generate($id)
     {
-        $candidate_id = $candidate->id;
+        $candidate_id = Candidate::find($id);
+        if (!$candidate_id) return $this->notFound('Candidate not found');
         // Genarate question pool which they have not answer before
         $sql = <<<SQL
         SELECT * FROM `questions`
