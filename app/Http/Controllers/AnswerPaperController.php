@@ -122,9 +122,10 @@ class AnswerPaperController extends Controller
 
     public function generate($id)
     {
-        $candidate_id = Candidate::find($id);
-        if (!$candidate_id) return $this->notFound('Candidate not found');
+        $candidate = Candidate::find($id);
+        if (!$candidate) return $this->notFound('Candidate not found');
         // Genarate question pool which they have not answer before
+        $candidate_id = $candidate->id;
         $sql = <<<SQL
         SELECT * FROM `questions`
         WHERE `id` NOT IN (
