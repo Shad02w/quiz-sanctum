@@ -9,9 +9,15 @@
     <meta name='csrf-token' content='{{ csrf_token() }}'>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
     <script>
-        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+        const isDarkMode = () => {
+            const local = localStorage.getItem('theme')
+            if (local)
+                return local === 'dark' ? true : false
+            else
+                return window.matchMedia('(prefers-color-scheme: dark)').matches
+        }
         if (isDarkMode) {
-            document.documentElement.classList.add('dark')
+            document.documentElement.classList.add('theme-dark')
         }
 
     </script>
