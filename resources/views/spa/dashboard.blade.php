@@ -16,7 +16,7 @@
             else
                 return window.matchMedia('(prefers-color-scheme: dark)').matches
         }
-        if (isDarkMode) {
+        if (isDarkMode()) {
             document.documentElement.classList.add('theme-dark')
         }
 
