@@ -63,8 +63,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _models_Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @models/Api */ "./resources/js/models/Api.ts");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/layout/dist/esm/badge.js");
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/table/dist/esm/table.js");
 var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve) {
@@ -211,7 +209,6 @@ var __generator = undefined && undefined.__generator || function (thisArg, body)
 
 
 
-
 var Candidates = function Candidates(props) {
   var _a = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       candidates = _a[0],
@@ -256,40 +253,7 @@ var Candidates = function Candidates(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     updateCandidates();
   }, []);
-
-  var createStateBadge = function createStateBadge(state) {
-    if (state.toLowerCase() === 'finished') {
-      return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Badge, {
-        colorScheme: 'green'
-      }, "Finished");
-    } else if (state.toLowerCase() === 'interrupt') {
-      return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Badge, {
-        colorScheme: 'red'
-      }, "Interrupt");
-    } else if (state.toLowerCase() === 'process') {
-      return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Badge, {
-        colorScheme: 'cyan'
-      }, "Process");
-    } else return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Badge, null, state);
-  };
-
-  return react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-    className: 'pb-5 max-w-full overflow-x-hidden'
-  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-    className: 'md:hidden text-2xl mb-6'
-  }, "Candidates"), react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-    className: 'p-3 overflow-x-auto'
-  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Table, {
-    variant: 'unstyled',
-    className: 'rounded-md'
-  }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Thead, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Tr, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Th, null, "Email"), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Th, null, "State"), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Th, null, "Date"), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Th, null, "Actions"))), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Tbody, null, candidates.map(function (candidate) {
-    return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Tr, {
-      key: candidate.id,
-      className: 'border-b-2 border-gray-200 dark:border-gray-800'
-    }, react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Td, null, candidate.email), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Td, null, createStateBadge(candidate.state)), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Td, null, candidate.created_at), react__WEBPACK_IMPORTED_MODULE_1__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Td, null, react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
-      className: 'btn-red px-2 h-10'
-    }, "Delete"))));
-  })))));
+  return react__WEBPACK_IMPORTED_MODULE_1__.createElement("h1", null, "hi");
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Candidates);
@@ -1727,17 +1691,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ "./resources/js/App.tsx");
 /* harmony import */ var _contexts_ThemeContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contexts/ThemeContext */ "./resources/js/contexts/ThemeContext.tsx");
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/react/dist/esm/extend-theme.js");
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/react/dist/esm/chakra-provider.js");
 /* harmony import */ var tailwindcss_tailwind_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tailwindcss/tailwind.css */ "./node_modules/tailwindcss/tailwind.css");
 
 
 
 
 
-
-var theme = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_5__.extendTheme)({});
-(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_0__.createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_6__.ChakraProvider, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_contexts_ThemeContext__WEBPACK_IMPORTED_MODULE_3__.ThemeContextProvider, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null))), document.getElementById('root'));
+(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_0__.createElement(_contexts_ThemeContext__WEBPACK_IMPORTED_MODULE_3__.ThemeContextProvider, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null)), document.getElementById('root'));
 
 /***/ }),
 
