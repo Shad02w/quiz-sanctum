@@ -1,5 +1,4 @@
-import React, { useEffect, useContext } from 'react'
-import { ThemeContext } from '@contexts/ThemeContext'
+import React from 'react'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 import Navbar from '@components/Navbar'
 import Questions from '@components/Questions'
@@ -7,15 +6,6 @@ import Candidates from '@components/Candidates'
 import Result from '@components/Result'
 
 const App = () => {
-    // const { dark } = useContext(ThemeContext)
-    const dark = true
-
-    useEffect(() => {
-        if (dark)
-            document.documentElement.classList.add('dark')
-        else
-            document.documentElement.classList.remove('dark')
-    }, [dark])
 
     return (
         <HashRouter>

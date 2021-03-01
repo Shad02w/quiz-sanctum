@@ -26,11 +26,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  // const { dark } = useContext(ThemeContext)
-  var dark = true;
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (dark) document.documentElement.classList.add('dark');else document.documentElement.classList.remove('dark');
-  }, [dark]);
   return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.HashRouter, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: 'app',
     className: 'antialiased'
@@ -1651,34 +1646,6 @@ var QuestionModal = function QuestionModal(props) {
 
 /***/ }),
 
-/***/ "./resources/js/contexts/ThemeContext.tsx":
-/*!************************************************!*\
-  !*** ./resources/js/contexts/ThemeContext.tsx ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ThemeContext": () => (/* binding */ ThemeContext),
-/* harmony export */   "ThemeContextProvider": () => (/* binding */ ThemeContextProvider)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _models_Utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../models/Utils */ "./resources/js/models/Utils.ts");
-
-
-var ThemeContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({});
-var ThemeContextProvider = function ThemeContextProvider(props) {
-  var children = props.children;
-  return react__WEBPACK_IMPORTED_MODULE_0__.createElement(ThemeContext.Provider, {
-    value: {
-      dark: (0,_models_Utils__WEBPACK_IMPORTED_MODULE_1__.isSystemDarkMode)()
-    }
-  }, children);
-};
-
-/***/ }),
-
 /***/ "./resources/js/index.tsx":
 /*!********************************!*\
   !*** ./resources/js/index.tsx ***!
@@ -1690,17 +1657,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ "./resources/js/App.tsx");
-/* harmony import */ var _contexts_ThemeContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contexts/ThemeContext */ "./resources/js/contexts/ThemeContext.tsx");
-/* harmony import */ var tailwindcss_tailwind_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tailwindcss/tailwind.css */ "./node_modules/tailwindcss/tailwind.css");
-/* harmony import */ var _windmill_react_ui__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @windmill/react-ui */ "./node_modules/@windmill/react-ui/dist/index.js");
-/* harmony import */ var _windmill_react_ui__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_windmill_react_ui__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var tailwindcss_tailwind_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tailwindcss/tailwind.css */ "./node_modules/tailwindcss/tailwind.css");
+/* harmony import */ var _windmill_react_ui__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @windmill/react-ui */ "./node_modules/@windmill/react-ui/dist/index.js");
+/* harmony import */ var _windmill_react_ui__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_windmill_react_ui__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
 
-
-(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_0__.createElement(_windmill_react_ui__WEBPACK_IMPORTED_MODULE_5__.Windmill, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_contexts_ThemeContext__WEBPACK_IMPORTED_MODULE_3__.ThemeContextProvider, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null))), document.getElementById('root'));
+(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_0__.createElement(_windmill_react_ui__WEBPACK_IMPORTED_MODULE_4__.Windmill, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null)), document.getElementById('root'));
 
 /***/ }),
 
@@ -1987,23 +1952,6 @@ var getFullQuestionSetById = function getFullQuestionSetById(id) {
       }
     });
   });
-};
-
-/***/ }),
-
-/***/ "./resources/js/models/Utils.ts":
-/*!**************************************!*\
-  !*** ./resources/js/models/Utils.ts ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isSystemDarkMode": () => (/* binding */ isSystemDarkMode)
-/* harmony export */ });
-var isSystemDarkMode = function isSystemDarkMode() {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
 };
 
 /***/ }),
