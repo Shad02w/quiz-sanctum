@@ -1,5 +1,6 @@
 const colors = require('tailwindcss/colors')
-module.exports = {
+const windmill = require('@windmill/react-ui/config')
+module.exports = windmill({
     purge: [
         'resources/**/*.blade.php',
         'resources/**/*.{js,jsx,ts,tsx}',
@@ -21,4 +22,4 @@ module.exports = {
         },
     },
     plugins: [],
-}
+})

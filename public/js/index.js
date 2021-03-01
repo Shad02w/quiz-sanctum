@@ -1692,12 +1692,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ "./resources/js/App.tsx");
 /* harmony import */ var _contexts_ThemeContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contexts/ThemeContext */ "./resources/js/contexts/ThemeContext.tsx");
 /* harmony import */ var tailwindcss_tailwind_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tailwindcss/tailwind.css */ "./node_modules/tailwindcss/tailwind.css");
+/* harmony import */ var _windmill_react_ui__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @windmill/react-ui */ "./node_modules/@windmill/react-ui/dist/index.js");
+/* harmony import */ var _windmill_react_ui__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_windmill_react_ui__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
 
-(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_0__.createElement(_contexts_ThemeContext__WEBPACK_IMPORTED_MODULE_3__.ThemeContextProvider, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null)), document.getElementById('root'));
+
+(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_0__.createElement(_windmill_react_ui__WEBPACK_IMPORTED_MODULE_5__.Windmill, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_contexts_ThemeContext__WEBPACK_IMPORTED_MODULE_3__.ThemeContextProvider, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null))), document.getElementById('root'));
 
 /***/ }),
 
