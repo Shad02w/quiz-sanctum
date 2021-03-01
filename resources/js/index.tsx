@@ -6,7 +6,7 @@ import { Windmill } from '@windmill/react-ui'
 
 
 render(
-    <Windmill>
+    <Windmill usePreferences>
         <App />
     </Windmill>
     ,

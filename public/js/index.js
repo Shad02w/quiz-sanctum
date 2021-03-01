@@ -304,10 +304,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _models_Api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @models/Api */ "./resources/js/models/Api.ts");
-/* harmony import */ var react_icons_hi__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-icons/hi */ "./node_modules/react-icons/hi/index.esm.js");
-/* harmony import */ var react_icons_gi__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/gi */ "./node_modules/react-icons/gi/index.esm.js");
-/* harmony import */ var react_icons_io5__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-icons/io5 */ "./node_modules/react-icons/io5/index.esm.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_icons_hi__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-icons/hi */ "./node_modules/react-icons/hi/index.esm.js");
+/* harmony import */ var react_icons_gi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-icons/gi */ "./node_modules/react-icons/gi/index.esm.js");
+/* harmony import */ var react_icons_io5__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/io5 */ "./node_modules/react-icons/io5/index.esm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _windmill_react_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @windmill/react-ui */ "./node_modules/@windmill/react-ui/dist/index.js");
+/* harmony import */ var _windmill_react_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_windmill_react_ui__WEBPACK_IMPORTED_MODULE_2__);
 var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve) {
@@ -458,6 +460,7 @@ var __generator = undefined && undefined.__generator || function (thisArg, body)
 
 
 
+
 var Navbar = function Navbar() {
   var _a = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       username = _a[0],
@@ -466,6 +469,10 @@ var Navbar = function Navbar() {
   var _b = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       expanded = _b[0],
       setExpanded = _b[1];
+
+  var _c = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_windmill_react_ui__WEBPACK_IMPORTED_MODULE_2__.WindmillContext),
+      mode = _c.mode,
+      toggleMode = _c.toggleMode;
 
   var handleLogout = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function () {
     return __awaiter(void 0, void 0, void 0, function () {
@@ -521,9 +528,9 @@ var Navbar = function Navbar() {
         return !pre;
       });
     }
-  }, expanded ? react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_2__.IoCloseSharp, {
+  }, expanded ? react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_3__.IoCloseSharp, {
     className: 'fill-current w-6 h-6'
-  }) : react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_gi__WEBPACK_IMPORTED_MODULE_3__.GiHamburgerMenu, {
+  }) : react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_gi__WEBPACK_IMPORTED_MODULE_4__.GiHamburgerMenu, {
     className: 'fill-current w-6 h-6'
   }))), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "block md:w-full mt-6 md:mt-0  md:flex md:flex-row md:justify-between md:items-center " + (expanded ? '' : 'hidden')
@@ -531,20 +538,20 @@ var Navbar = function Navbar() {
     className: 'text-base md:text-lg md:flex md:flex-row'
   }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: 'mb-4 md:mb-0 md:mr-4'
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
     exact: true,
     className: 'navbar-btn-base',
     activeClassName: 'navbar-btn-active',
     to: '/'
   }, "Questions")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: 'mb-4 md:mb-0 md:mr-4'
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
     className: 'navbar-btn-base',
     activeClassName: 'navbar-btn-active',
     to: '/candidates'
   }, "Candidates")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: 'mb-4 md:mb-0 md:mr-4'
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.NavLink, {
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
     className: 'navbar-btn-base',
     activeClassName: 'navbar-btn-active',
     to: '/results'
@@ -555,10 +562,15 @@ var Navbar = function Navbar() {
     className: 'flex flex-row items-center justify-between md:justify-start text-base md:text-lg'
   }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: 'md:mr-8 px-2 font-bold'
-  }, username), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, username), react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: 'flex flex-row justify-center items-center'
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: 'mr-4',
+    onClick: toggleMode
+  }, mode), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     onClick: handleLogout,
     className: 'p-3 text-white bg-rose-700 hover:bg-rose-600 cursor-pointer rounded-lg'
-  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_hi__WEBPACK_IMPORTED_MODULE_5__.HiLogout, {
+  }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_hi__WEBPACK_IMPORTED_MODULE_6__.HiLogout, {
     className: 'fill-current w-5'
   }))))))));
 };
@@ -1665,7 +1677,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_0__.createElement(_windmill_react_ui__WEBPACK_IMPORTED_MODULE_4__.Windmill, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null)), document.getElementById('root'));
+(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)(react__WEBPACK_IMPORTED_MODULE_0__.createElement(_windmill_react_ui__WEBPACK_IMPORTED_MODULE_4__.Windmill, {
+  usePreferences: true
+}, react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_2__.default, null)), document.getElementById('root'));
 
 /***/ }),
 

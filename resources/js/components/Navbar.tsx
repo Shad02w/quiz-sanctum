@@ -1,14 +1,16 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useCallback, useState, useEffect, useContext } from 'react'
 import { ApiResquest, UserMeGetResponse } from '@models/Api'
 import { HiLogout } from 'react-icons/hi'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { IoCloseSharp } from 'react-icons/io5'
 import { NavLink } from 'react-router-dom'
+import { WindmillContext } from '@windmill/react-ui'
 
 const Navbar = () => {
 
     const [username, setUsername] = useState('')
     const [expanded, setExpanded] = useState(false)
+    const { mode, toggleMode } = useContext(WindmillContext)
 
     const handleLogout = useCallback(async () => {
         await ApiResquest('POST', '/logout');
@@ -71,7 +73,8 @@ const Navbar = () => {
                         <hr className='block md:hidden mt-4 mb-4 border-t-2 border-gray-500 dark:border-gray-700' />
                         <ul id='navbar-admin' className='flex flex-row items-center justify-between md:justify-start text-base md:text-lg'>
                             <li className='md:mr-8 px-2 font-bold'>{username}</li>
-                            <li>
+                            <li className='flex flex-row justify-center items-center'>
+                                <button className='mr-4' onClick={toggleMode}>{mode}</button>
                                 <button
                                     onClick={handleLogout}
                                     className='p-3 text-white bg-rose-700 hover:bg-rose-600 cursor-pointer rounded-lg'>

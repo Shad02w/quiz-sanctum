@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 import Navbar from '@components/Navbar'
 import Questions from '@components/Questions'
